@@ -8,11 +8,14 @@ import (
 	"github.com/rancher/shepherd/clients/rancher"
 	management "github.com/rancher/shepherd/clients/rancher/generated/management/v3"
 	extensionscluster "github.com/rancher/shepherd/extensions/clusters"
+	//"github.com/rancher/tests/actions/config/defaults"
 	"github.com/rancher/shepherd/extensions/settings"
+	"github.com/rancher/shepherd/extensions/cloudcredentials"
 	password "github.com/rancher/shepherd/extensions/users/passwordgenerator"
 	"github.com/rancher/shepherd/pkg/config"
 	"github.com/rancher/shepherd/pkg/session"
 	"github.com/rancher/tests/actions/clusters"
+	"github.com/rancher/tests/actions/machinepools"
 	"github.com/rancher/tests/actions/provisioning"
 	"github.com/rancher/tests/actions/provisioning/permutations"
 	"github.com/rancher/tests/actions/provisioninginput"
@@ -29,6 +32,7 @@ type RestrictedAdminTestSuite struct {
 	client             *rancher.Client
 	session            *session.Session
 	cluster            *management.Cluster
+	cattleConfig       map[string]any
 	provisioningConfig *provisioninginput.Config
 }
 
@@ -98,8 +102,14 @@ func (ra *RestrictedAdminTestSuite) TestRestrictedAdminCreateK3sCluster() {
 	log.Info("Setting up cluster config and provider for downstream k3s cluster")
 	clusterConfig := clusters.ConvertConfigToClusterConfig(&provisioningConfig)
 	clusterConfig.KubernetesVersion = ra.provisioningConfig.K3SKubernetesVersions[0]
-	k3sprovider, _, _, _ := permutations.GetClusterProvider(permutations.K3SProvisionCluster, (*clusterConfig.Providers)[0], &provisioningConfig)
-	clusterObject, err := provisioning.CreateProvisioningCluster(restrictedAdminClient, *k3sprovider, clusterConfig, nil)
+
+	provider, _, _, _ := permutations.GetClusterProvider(permutations.K3SProvisionCluster, (*clusterConfig.Providers)[0], &provisioningConfig)
+	//provider := provisioning.CreateProvider(clusterConfig.Provider)
+	machineConfigSpec := machinepools.LoadMachineConfigs(string(provider.Name))
+	credentialSpec := cloudcredentials.LoadCloudCredential(string(provider.Name))
+
+
+	clusterObject, err := provisioning.CreateProvisioningCluster(restrictedAdminClient, *provider, credentialSpec,clusterConfig, machineConfigSpec, nil)
 	require.NoError(ra.T(), err)
 
 	provisioning.VerifyCluster(ra.T(), ra.client, clusterConfig, clusterObject)
