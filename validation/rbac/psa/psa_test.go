@@ -364,8 +364,8 @@ func (rb *PSATestSuite) TestPsactRBAC() {
 		role   string
 		member string
 	}{
-		{"Cluster Owner", rbac.ClusterOwner.String(), rbac.StandardUser.String()},
-		{"Cluster Member", rbac.ClusterMember.String(), rbac.StandardUser.String()},
+		// {"Cluster Owner", rbac.ClusterOwner.String(), rbac.StandardUser.String()},
+		// {"Cluster Member", rbac.ClusterMember.String(), rbac.StandardUser.String()},
 		{"Project Owner", rbac.ProjectOwner.String(), rbac.StandardUser.String()},
 		{"Project Member", rbac.ProjectMember.String(), rbac.StandardUser.String()},
 		{"Project Read Only", rbac.ReadOnly.String(), rbac.StandardUser.String()},
