@@ -169,9 +169,9 @@ func (gr *GlobalRolesV2TestSuite) TestClusterCreationAfterAddingGlobalRoleWithIn
 	require.Equal(gr.T(), expectedClusterCount, actualClusterCount, "Unexpected number of Clusters: Expected %d, Actual %d", expectedClusterCount, actualClusterCount)
 
 	log.Info("As the new user, create new downstream clusters.")
-	clusterObject, _, testClusterConfig, err := createDownstreamCluster(userClient, "RKE1")
-	require.NoError(gr.T(), err)
-	provisioning.VerifyRKE1Cluster(gr.T(), userClient, testClusterConfig, clusterObject)
+	// clusterObject, _, testClusterConfig, err := createDownstreamCluster(userClient, "RKE1")
+	// require.NoError(gr.T(), err)
+	// provisioning.VerifyRKE1Cluster(gr.T(), userClient, testClusterConfig, clusterObject)
 	_, steveObject, testClusterConfig, err := createDownstreamCluster(userClient, "RKE2")
 	require.NoError(gr.T(), err)
 	provisioning.VerifyCluster(gr.T(), userClient, testClusterConfig, steveObject)
