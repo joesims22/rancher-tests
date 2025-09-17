@@ -2,25 +2,30 @@ package globalrolesv2
 
 import (
 	"context"
-	"fmt"
+	// "fmt"
 
 	v3 "github.com/rancher/rancher/pkg/apis/management.cattle.io/v3"
 
 	"github.com/rancher/shepherd/pkg/config"
 	namegen "github.com/rancher/shepherd/pkg/namegenerator"
 
-	"github.com/rancher/shepherd/clients/ec2"
+	"github.com/rancher/shepherd/extensions/cloudcredentials"
+	
+	// "github.com/rancher/shepherd/clients/ec2"
 	"github.com/rancher/shepherd/clients/rancher"
 	management "github.com/rancher/shepherd/clients/rancher/generated/management/v3"
 	v1 "github.com/rancher/shepherd/clients/rancher/v1"
 	"github.com/rancher/shepherd/extensions/defaults"
 	"github.com/rancher/tests/actions/clusters"
+	configDefaults "github.com/rancher/tests/actions/config/defaults"
 	"github.com/rancher/tests/actions/kubeapi/namespaces"
 	"github.com/rancher/tests/actions/kubeapi/projects"
 	rbacapi "github.com/rancher/tests/actions/kubeapi/rbac"
 	"github.com/rancher/tests/actions/provisioning"
 	"github.com/rancher/tests/actions/provisioninginput"
+	"github.com/rancher/tests/actions/machinepools"
 	"github.com/rancher/tests/actions/rbac"
+	clusterdefaults "github.com/rancher/tests/actions/config/defaults"
 
 	"github.com/rancher/shepherd/extensions/users"
 	rbacv1 "k8s.io/api/rbac/v1"
@@ -78,47 +83,71 @@ func getGlobalRoleBindingForUserWrangler(client *rancher.Client, grName, userID 
 	return "", nil
 }
 
-func createDownstreamCluster(client *rancher.Client, clusterType string) (*management.Cluster, *v1.SteveAPIObject, *clusters.ClusterConfig, error) {
-	provisioningConfig := new(provisioninginput.Config)
-	config.LoadConfig(provisioninginput.ConfigurationFileKey, provisioningConfig)
+// func createDownstreamCluster(client *rancher.Client, clusterType string) (*management.Cluster, *v1.SteveAPIObject, *clusters.ClusterConfig, error) {
+// 	clusterConfig := new(clusters.ClusterConfig)
+// 	config.LoadConfig(clusterdefaults.ClusterConfigKey, clusterConfig)
 
-	awsEC2Configs := new(ec2.AWSEC2Configs)
-	config.LoadConfig(ec2.ConfigurationFileKey, awsEC2Configs)
+// 	awsEC2Configs := new(ec2.AWSEC2Configs)
+// 	config.LoadConfig(ec2.ConfigurationFileKey, awsEC2Configs)
 
-	nodeProviders := provisioningConfig.NodeProviders[0]
-	externalNodeProvider := provisioning.ExternalNodeProviderSetup(nodeProviders)
-	testClusterConfig := clusters.ConvertConfigToClusterConfig(provisioningConfig)
-	testClusterConfig.CNI = provisioningConfig.CNIs[0]
+// 	nodeProviders := provisioningConfig.NodeProviders[0]
+// 	externalNodeProvider := provisioning.ExternalNodeProviderSetup(nodeProviders)
+// 	testClusterConfig := clusters.ConvertConfigToClusterConfig(provisioningConfig)
+// 	testClusterConfig.CNI = provisioningConfig.CNIs[0]
 
-	var clusterObject *management.Cluster
-	var steveObject *v1.SteveAPIObject
-	var err error
+// 	var clusterObject *management.Cluster
+// 	var steveObject *v1.SteveAPIObject
+// 	var err error
 
-	switch clusterType {
-	case "RKE1":
-		nodeAndRoles := []provisioninginput.NodePools{
-			provisioninginput.AllRolesNodePool,
-		}
-		testClusterConfig.NodePools = nodeAndRoles
-		testClusterConfig.KubernetesVersion = provisioningConfig.RKE1KubernetesVersions[0]
-		clusterObject, _, err = provisioning.CreateProvisioningRKE1CustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
-	case "RKE2":
-		nodeAndRoles := []provisioninginput.MachinePools{
-			provisioninginput.AllRolesMachinePool,
-		}
-		testClusterConfig.MachinePools = nodeAndRoles
-		testClusterConfig.KubernetesVersion = provisioningConfig.RKE2KubernetesVersions[0]
+// 	switch clusterType {
+// 	case "RKE1":
+// 		nodeAndRoles := []provisioninginput.NodePools{
+// 			provisioninginput.AllRolesNodePool,
+// 		}
+// 		testClusterConfig.NodePools = nodeAndRoles
+// 		testClusterConfig.KubernetesVersion = provisioningConfig.RKE1KubernetesVersions[0]
+// 		clusterObject, _, err = provisioning.CreateProvisioningRKE1CustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
+// 	case "RKE2":
+// 		nodeAndRoles := []provisioninginput.MachinePools{
+// 			provisioninginput.AllRolesMachinePool,
+// 		}
+// 		testClusterConfig.MachinePools = nodeAndRoles
+// 		testClusterConfig.KubernetesVersion = provisioningConfig.RKE2KubernetesVersions[0]
 
-		steveObject, err = provisioning.CreateProvisioningCustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
-	default:
-		return nil, nil, nil, fmt.Errorf("unsupported cluster type: %s", clusterType)
-	}
+// 		steveObject, err = provisioning.CreateProvisioningCustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
+// 	default:
+// 		return nil, nil, nil, fmt.Errorf("unsupported cluster type: %s", clusterType)
+// 	}
 
+// 	if err != nil {
+// 		return nil, nil, nil, err
+// 	}
+
+// 	return clusterObject, steveObject, testClusterConfig, nil
+// }
+
+func createDownstreamK3sCluster(client *rancher.Client, clusterType string) (*v1.SteveAPIObject, error) {
+	// provisioningConfig := new(provisioninginput.Config)
+	// config.LoadConfig(provisioninginput.ConfigurationFileKey, provisioningConfig)
+	clusterType = "filler"
+
+	clusterConfig := new(clusters.ClusterConfig)
+	config.LoadConfig(clusterdefaults.ClusterConfigKey, clusterConfig)
+
+		cattleConfig, err := defaults.SetK8sDefault(client, configDefaults.K3S, cattleConfig)
+
+
+	nodeRolesAll := []provisioninginput.MachinePools{provisioninginput.AllRolesMachinePool}
+	clusterConfig.MachinePools = nodeRolesAll
+
+	provider := provisioning.CreateProvider(clusterConfig.Provider)
+	credentialSpec := cloudcredentials.LoadCloudCredential(string(provider.Name))
+	machineConfigSpec := machinepools.LoadMachineConfigs(string(provider.Name))
+	clusterObject, err := provisioning.CreateProvisioningCluster(client, provider, credentialSpec, clusterConfig, machineConfigSpec, nil)
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, err
 	}
-
-	return clusterObject, steveObject, testClusterConfig, nil
+	return clusterObject, nil
 }
 
 func createGlobalRoleAndUser(client *rancher.Client, inheritedClusterrole []string) (*management.User, *v3.GlobalRole, error) {
