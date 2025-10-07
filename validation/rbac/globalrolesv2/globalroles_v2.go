@@ -2,18 +2,18 @@ package globalrolesv2
 
 import (
 	"context"
-	"fmt"
 
 	v3 "github.com/rancher/rancher/pkg/apis/management.cattle.io/v3"
-
 	"github.com/rancher/shepherd/pkg/config"
 	namegen "github.com/rancher/shepherd/pkg/namegenerator"
 
 	"github.com/rancher/shepherd/clients/ec2"
 	"github.com/rancher/shepherd/clients/rancher"
+		"github.com/rancher/shepherd/extensions/users"
 	management "github.com/rancher/shepherd/clients/rancher/generated/management/v3"
 	v1 "github.com/rancher/shepherd/clients/rancher/v1"
 	"github.com/rancher/shepherd/extensions/defaults"
+	
 	"github.com/rancher/tests/actions/clusters"
 	"github.com/rancher/tests/actions/kubeapi/namespaces"
 	"github.com/rancher/tests/actions/kubeapi/projects"
@@ -21,8 +21,6 @@ import (
 	"github.com/rancher/tests/actions/provisioning"
 	"github.com/rancher/tests/actions/provisioninginput"
 	"github.com/rancher/tests/actions/rbac"
-
-	"github.com/rancher/shepherd/extensions/users"
 	rbacv1 "k8s.io/api/rbac/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -78,7 +76,7 @@ func getGlobalRoleBindingForUserWrangler(client *rancher.Client, grName, userID 
 	return "", nil
 }
 
-func createDownstreamCluster(client *rancher.Client, clusterType string) (*management.Cluster, *v1.SteveAPIObject, *clusters.ClusterConfig, error) {
+func createDownstreamK3sCluster(client *rancher.Client) (*management.Cluster, *v1.SteveAPIObject, *clusters.ClusterConfig, error) {
 	provisioningConfig := new(provisioninginput.Config)
 	config.LoadConfig(provisioninginput.ConfigurationFileKey, provisioningConfig)
 
@@ -94,24 +92,12 @@ func createDownstreamCluster(client *rancher.Client, clusterType string) (*manag
 	var steveObject *v1.SteveAPIObject
 	var err error
 
-	switch clusterType {
-	case "K3S":
-		nodeAndRoles := []provisioninginput.MachinePools{
-			provisioninginput.AllRolesMachinePool,
-		}
-		testClusterConfig.MachinePools = nodeAndRoles
-		testClusterConfig.KubernetesVersion = provisioningConfig.K3SKubernetesVersions[0]
-		steveObject, err = provisioning.CreateProvisioningCustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
-	case "RKE2":
-		nodeAndRoles := []provisioninginput.MachinePools{
-			provisioninginput.AllRolesMachinePool,
-		}
-		testClusterConfig.MachinePools = nodeAndRoles
-		testClusterConfig.KubernetesVersion = provisioningConfig.RKE2KubernetesVersions[0]
-		steveObject, err = provisioning.CreateProvisioningCustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
-	default:
-		return nil, nil, nil, fmt.Errorf("unsupported cluster type: %s", clusterType)
+	nodeAndRoles := []provisioninginput.MachinePools{
+		provisioninginput.AllRolesMachinePool,
 	}
+	testClusterConfig.MachinePools = nodeAndRoles
+	testClusterConfig.KubernetesVersion = provisioningConfig.K3SKubernetesVersions[0]
+	steveObject, err = provisioning.CreateProvisioningCustomCluster(client, &externalNodeProvider, testClusterConfig, awsEC2Configs)
 
 	if err != nil {
 		return nil, nil, nil, err

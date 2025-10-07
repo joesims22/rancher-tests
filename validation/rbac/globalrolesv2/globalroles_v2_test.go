@@ -169,10 +169,10 @@ func (gr *GlobalRolesV2TestSuite) TestClusterCreationAfterAddingGlobalRoleWithIn
 	require.Equal(gr.T(), expectedClusterCount, actualClusterCount, "Unexpected number of Clusters: Expected %d, Actual %d", expectedClusterCount, actualClusterCount)
 
 	log.Info("As the new user, create two new downstream  K3S clusters.")
-	_, firstClusterSteveObject, _, err := createDownstreamCluster(userClient, "K3S")
+	_, firstClusterSteveObject, _, err := createDownstreamK3sCluster(userClient)
 	require.NoError(gr.T(), err)
 	provisioning.VerifyCluster(gr.T(), userClient, firstClusterSteveObject)
-	_, secondClusterSteveObject, _, err := createDownstreamCluster(userClient, "K3S")
+	_, secondClusterSteveObject, _, err := createDownstreamK3sCluster(userClient)
 	require.NoError(gr.T(), err)
 	provisioning.VerifyCluster(gr.T(), userClient, secondClusterSteveObject)
 
@@ -422,8 +422,8 @@ func (gr *GlobalRolesV2TestSuite) TestUserWithInheritedClusterRolesImpactFromClu
 	subSession := gr.session.NewSession()
 	defer subSession.Cleanup()
 
-	log.Info("Create a RKE2 downstream cluster.")
-	_, rke2SteveObject, _, err := createDownstreamCluster(gr.client, "RKE2")
+	log.Info("Create a K3s downstream cluster.")
+	_, rke2SteveObject, _, err := createDownstreamK3sCluster(gr.client)
 	require.NoError(gr.T(), err)
 	provisioning.VerifyCluster(gr.T(), gr.client, rke2SteveObject)
 
