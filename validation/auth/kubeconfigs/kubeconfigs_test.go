@@ -13,6 +13,7 @@ import (
 	"github.com/rancher/shepherd/extensions/clusters"
 	"github.com/rancher/shepherd/extensions/users"
 	"github.com/rancher/shepherd/pkg/session"
+	configDefaults "github.com/rancher/tests/actions/config/defaults"
 	kubeconfigapi "github.com/rancher/tests/actions/kubeconfigs"
 	"github.com/rancher/tests/actions/provisioning"
 	"github.com/rancher/tests/actions/rbac"
@@ -51,21 +52,21 @@ func (kc *ExtKubeconfigTestSuite) SetupSuite() {
 	require.NoError(kc.T(), err)
 
 	log.Infof("Creating additional clusters - ACE-enabled and non-ACE clusters")
-	aceClusterObject1, aceClusterConfig1, err := kubeconfigapi.CreateDownstreamCluster(kc.client, true)
+	aceClusterObject1, aceClusterConfig1, err := kubeconfigapi.CreateDownstreamCluster(kc.client, configDefaults.K3S, true)
 	require.NoError(kc.T(), err)
 	require.NotNil(kc.T(), aceClusterObject1)
 	require.NotNil(kc.T(), aceClusterConfig1)
 	aceCluster1ID, err := clusters.GetClusterIDByName(kc.client, aceClusterObject1.Name)
 	require.NoError(kc.T(), err)
 
-	aceClusterObject2, aceClusterConfig2, err := kubeconfigapi.CreateDownstreamCluster(kc.client, true)
+	aceClusterObject2, aceClusterConfig2, err := kubeconfigapi.CreateDownstreamCluster(kc.client, configDefaults.K3S, true)
 	require.NoError(kc.T(), err)
 	require.NotNil(kc.T(), aceClusterObject2)
 	require.NotNil(kc.T(), aceClusterConfig2)
 	aceCluster2ID, err := clusters.GetClusterIDByName(kc.client, aceClusterObject2.Name)
 	require.NoError(kc.T(), err)
 
-	clusterObject2, clusterConfig2, err := kubeconfigapi.CreateDownstreamCluster(kc.client, false)
+	clusterObject2, clusterConfig2, err := kubeconfigapi.CreateDownstreamCluster(kc.client, configDefaults.K3S, false)
 	require.NoError(kc.T(), err)
 	require.NotNil(kc.T(), clusterObject2)
 	require.NotNil(kc.T(), clusterConfig2)

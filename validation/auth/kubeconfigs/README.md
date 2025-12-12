@@ -37,7 +37,8 @@ clusterConfig:
       unhealthyNodeTimeout: "300s"
       maxUnhealthy: "2"
       unhealthyRange: "2-4"
-  kubernetesVersion: "v1.32.7+k3s1" #edit as needed
+  rke2KubernetesVersion: "" #edit as needed
+  k3sKubernetesVersion: ""
   provider: "aws"
   cni: "calico"
   nodeProvider: "ec2"

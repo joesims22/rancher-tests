@@ -138,10 +138,10 @@ func GetBackingTokensForKubeconfigName(client *rancher.Client, kubeconfigName st
 	return filteredTokens, nil
 }
 
-// CreateDownstreamCluster creates a ACE enabled or disabled downstream cluster
-func CreateDownstreamCluster(client *rancher.Client, isACE bool) (*v1.SteveAPIObject, *clusters.ClusterConfig, error) {
+// CreateDownstreamCluster creates a ACE enabled or disabled downstream cluster of the specified cluster type
+func CreateDownstreamCluster(client *rancher.Client, clusterType string, isACE bool) (*v1.SteveAPIObject, *clusters.ClusterConfig, error) {
 	cattleConfig := config.LoadConfigFromFile(os.Getenv(config.ConfigEnvironmentKey))
-	cattleConfig, err := configDefaults.SetK8sDefault(client, configDefaults.K3S, cattleConfig)
+	cattleConfig, err := configDefaults.SetK8sDefault(client, clusterType, cattleConfig)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to set k8s default to k3s: %w", err)
 	}
