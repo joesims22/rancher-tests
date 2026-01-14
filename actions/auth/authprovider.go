@@ -22,11 +22,13 @@ const (
 	AuthProvCleanupAnnotationValUnlocked = "unlocked"
 	OpenLdapAuthInput                    = "openLdapAuthInput"
 	ActiveDirectoryAuthInput             = "activeDirectoryAuthInput"
+	KeycloakAuthInput                    = "keycloakAuthInput"
 	AccessModeUnrestricted               = "unrestricted"
 	AccessModeRestricted                 = "restricted"
 	AccessModeRequired                   = "required"
 	OpenLdap                             = "openldap"
 	ActiveDirectory                      = "activedirectory"
+	Keycloak                             = "keycloak"
 	OpenLdapPasswordSecretID             = "openldapconfig-serviceaccountpassword"
 	ActiveDirectoryPasswordSecretID      = "activedirectoryconfig-serviceaccountpassword"
 	PrincipalTypeUser                    = "user"
@@ -34,6 +36,7 @@ const (
 	AccessModeMissingRequiredError       = "accessMode=MissingRequired"
 	PermissionDeniedError                = "PermissionDenied"
 	LocalPrincipalPrefix                 = "local://"
+	KeycloakPasswordSecretID             = "keycloakconfig-spkey"
 )
 
 type User struct {
@@ -51,6 +54,7 @@ type AuthConfig struct {
 	DoubleNestedUsers []User `yaml:"doubleNestedUsers"`
 	TripleNestedGroup string `yaml:"tripleNestedGroup"`
 	TripleNestedUsers []User `yaml:"tripleNestedUsers"`
+	IDPMetadataContent string `json:"idpMetadataContent" yaml:"idpMetadataContent"`
 }
 
 // SetupAuthenticatedSession enables the auth provider, logs in as the admin user, and returns a new session and client
@@ -108,11 +112,17 @@ func LoginAsAuthUser(client *rancher.Client, user *v3.User, providerName string)
 	return client.AsAuthUser(user, auth.Provider(providerName))
 }
 
-// NewPrincipalID constructs a principal ID string in the format required by AD authentication
+// NewPrincipalID constructs a principal ID string in the format required by the auth provider
+// For Keycloak (when searchBases are empty), uses format: keycloak_type://name
+// For LDAP/AD (with searchBases), uses DN format: provider_type://cn=name,searchBase
 func NewPrincipalID(authConfigID, principalType, name, userSearchBase, groupSearchBase string) string {
-	baseDN := userSearchBase
+	// Keycloak uses simpler principal IDs without search bases
+	if userSearchBase == "" && groupSearchBase == "" {
+		return fmt.Sprintf("%s_%s://%s", authConfigID, principalType, name)
+	}
 
-	if principalType == PrincipalTypeGroup {
+	baseDN := userSearchBase
+	if principalType == "group" {
 		baseDN = groupSearchBase
 	}
 
@@ -183,6 +193,9 @@ func EnsureAuthProviderEnabled(client *rancher.Client, providerName string) erro
 		err = client.Auth.OLDAP.Enable()
 	case ActiveDirectory:
 		err = client.Auth.ActiveDirectory.Enable()
+		return client.Auth.ActiveDirectory.Enable()
+	case Keycloak:
+		return client.Auth.Keycloak.Enable()
 	default:
 		return fmt.Errorf("unsupported auth provider: %s", providerName)
 	}
@@ -231,6 +244,8 @@ func UpdateAccessMode(client *rancher.Client, providerName, accessMode string, a
 		updatedConfig, err = client.Auth.OLDAP.Update(existing, updates)
 	case ActiveDirectory:
 		updatedConfig, err = client.Auth.ActiveDirectory.Update(existing, updates)
+	case Keycloak:
+		updatedConfig, err = client.Auth.Keycloak.Update(existing, updates)
 	default:
 		return nil, fmt.Errorf("unsupported auth provider for update: %s", providerName)
 	}
