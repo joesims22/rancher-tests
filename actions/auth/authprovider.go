@@ -22,13 +22,16 @@ const (
 	AuthProvCleanupAnnotationValUnlocked = "unlocked"
 	OpenLdapAuthInput                    = "openLdapAuthInput"
 	ActiveDirectoryAuthInput             = "activeDirectoryAuthInput"
+	KeycloakAuthInput                    = "keycloakAuthInput"
 	AccessModeUnrestricted               = "unrestricted"
 	AccessModeRestricted                 = "restricted"
 	AccessModeRequired                   = "required"
 	OpenLdap                             = "openldap"
 	ActiveDirectory                      = "activedirectory"
+	Keycloak                             = "keycloak"
 	OpenLdapPasswordSecretID             = "openldapconfig-serviceaccountpassword"
 	ActiveDirectoryPasswordSecretID      = "activedirectoryconfig-serviceaccountpassword"
+	KeycloakPasswordSecretID             = "keycloakconfig-serviceaccountpassword"
 )
 
 type User struct {
@@ -44,6 +47,7 @@ type AuthConfig struct {
 	NestedUsers       []User `yaml:"nestedUsers"`
 	DoubleNestedGroup string `yaml:"doubleNestedGroup"`
 	DoubleNestedUsers []User `yaml:"doubleNestedUsers"`
+	IDPMetadataContent string `json:"idpMetadataContent" yaml:"idpMetadataContent"`
 }
 
 // SetupAuthenticatedSession enables the auth provider, logs in as the admin user, and returns a new session and client
