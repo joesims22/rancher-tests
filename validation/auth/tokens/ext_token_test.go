@@ -142,6 +142,7 @@ func (ext *ExtTokenTestSuite) TestUpdateExtTokenAsAdmin() {
 	log.Info("Create ext token as admin user")
 	adminExtToken, err := exttokenapi.CreateExtToken(ext.client, ext.defaultExtTokenTTL)
 	require.NoError(ext.T(), err)
+	log.Info("Following token created by admin: ", adminExtToken.Name)
 
 	log.Info("Update ext token as admin user")
 	adminExtTokenToUpdate := adminExtToken.DeepCopy()

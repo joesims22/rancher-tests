@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
+	log "github.com/sirupsen/logrus"
 	extapi "github.com/rancher/rancher/pkg/apis/ext.cattle.io/v1"
 	"github.com/rancher/shepherd/clients/rancher"
 	"github.com/rancher/shepherd/extensions/defaults"
@@ -83,6 +84,7 @@ func ListExtToken(client *rancher.Client) (*extapi.TokenList, error) {
 
 // UpdateExtToken updates an existing ext token using Public API
 func UpdateExtToken(client *rancher.Client, exttoken *extapi.Token) (*extapi.Token, error) {
+	log.Info("Calling update on ext token: ", exttoken.Name)
 	updatedExtToken, err := client.WranglerContext.Ext.Token().Update(exttoken)
 	if err != nil {
 		return nil, fmt.Errorf("failed to update ext token: %w", err)
