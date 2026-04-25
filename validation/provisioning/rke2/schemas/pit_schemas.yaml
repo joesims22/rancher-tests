@@ -1,259 +1,2081 @@
-- projects: [RANCHERINT]
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/NodeDriver
+  cases:
+  - description: Provisions a 1 node all roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|etcd_cp_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 2 node stacked roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|etcd_cp|worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|etcd|cp|worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 4 node etcd/cp/worker/windows node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|etcd|cp|worker|windows
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 8 node 3etcd/2cp/3worker node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|3_etcd|2_cp|3_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/Custom
+  cases:
+  - description: Provisions a 1 node all roles custom cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Custom|etcd_cp_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 2 node stacked roles custom cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Custom|etcd_cp|worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles custom cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Custom|etcd|cp|worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 4 node etcd/cp/worker/windows custom cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Custom|etcd|cp|worker|windows
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 8 node 3etcd/2cp/3worker custom cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Custom|3_etcd|2_cp|3_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/PSACT
+  cases:
+  - description: Provisions a cluster with psact set to rancher privilaged
+    preconditions: null
+    postconditions: null
+    title: RKE2_Rancher_Privileged|3_etcd|2_cp|3_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a psact rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a cluster with psact set to rancher restricted
+    preconditions: null
+    postconditions: null
+    title: RKE2_Rancher_Restricted|3_etcd|2_cp|3_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a psact rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a cluster with psact set to rancher baseline
+    preconditions: null
+    postconditions: null
+    title: RKE2_Rancher_Baseline|3_etcd|2_cp|3_worker
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a psact rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/Hardened
+  cases:
+  - description: Provisions a hardened 3etcd/2cp/3worker custom cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Rancher_Compliance
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Harden the rke2 custom cluster
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 4
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/CloudProvider
+  cases:
+  - description: Provisions a 3etcd/2cp/3worker AWS cloud provider cluster
+    preconditions: null
+    postconditions: null
+    title: AWS_OutOfTree
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a AWS rke2 cloud provider cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3etcd/2cp/3worker vSphere cloud provider cluster
+    preconditions: null
+    postconditions: null
+    title: vSphere_OutOfTree
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a vSphere rke2 cloud provider cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/AgentCustomization
+  cases:
+  - description: Provisions a 3etcd/2cp/2worker node driver cluster with valid fleet
+      agent settings
+    preconditions: null
+    postconditions: null
+    title: Custom_Fleet_Agent
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3etcd/2cp/2worker node driver cluster with valid cluster
+      agent settings
+    preconditions: null
+    postconditions: null
+    title: Custom_Cluster_Agent
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3etcd/2cp/2worker node driver cluster with invalid fleet
+      agent settings
+    preconditions: null
+    postconditions: null
+    title: Invalid_Custom_Fleet_Agent
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3etcd/2cp/2worker node driver cluster with invalid cluster
+      agent settings
+    preconditions: null
+    postconditions: null
+    title: Invalid_Custom_Cluster_Agent
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/ACE
+  cases:
+  - description: Provisions a 3etcd/2cp/2worker node driver cluster with ACE enabled
+    preconditions: null
+    postconditions: null
+    title: RKE2_ACE
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters:
+    - parametergroup: null
+      parametershared: null
+      parametersingle:
+        title: Scheduled Testing
+        values:
+        - ""
+    - parametergroup: null
+      parametershared: null
+      parametersingle: null
+    - parametergroup: null
+      parametershared: null
+      parametersingle:
+        title: NetworkType
+        values:
+        - ipv4
+    - parametergroup: null
+      parametershared: null
+      parametersingle:
+        title: OS
+        values:
+        - Ubuntu24.04-docker-enabled
+    - parametergroup: null
+      parametershared: null
+      parametersingle:
+        title: Provider
+        values:
+        - aws
+    - parametergroup: null
+      parametershared: null
+      parametersingle:
+        title: K8sVersion
+        values:
+        - v1.35.3+k3s1
+    - parametergroup: null
+      parametershared: null
+      parametersingle:
+        title: CNI
+        values:
+        - calico
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/Template
+  cases:
+  - description: Provisions a 3 node split roles cluster using an rke2 template
+    preconditions: null
+    postconditions: null
+    title: RKE2_Template|etcd|cp|worker
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 template cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/DataDirectories
+  cases:
+  - description: Provisions a 3 node split roles cluster with custom data directories
+    preconditions: null
+    postconditions: null
+    title: RKE2_Split_Data_Directories
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    - action: Verify data directories on each node
+      expectedresult: ""
+      data: ""
+      position: 4
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles cluster with custom data directories
+    preconditions: null
+    postconditions: null
+    title: RKE2_Grouped_Data_Directories
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    - action: Verify data directories on each node
+      expectedresult: ""
+      data: ""
+      position: 4
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles cluster with custom data directories
+    preconditions: null
+    postconditions: null
+    title: RKE2_Grouped_Data_Directories
+    severity: null
+    priority: 5
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a rke2 cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    - action: Verify data directories on each node
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/HostnameTruncation
+  cases:
+  - description: Provisions a 3 node split roles cluster with hostname truncation
+      enabled
+    preconditions: null
+    postconditions: null
+    title: RKE2_Hostname_Truncation|10_Characters
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a cluster with hostname limit set to 10
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify that the hostname limit is respected
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles cluster with hostname truncation
+      enabled
+    preconditions: null
+    postconditions: null
+    title: RKE2_Hostname_Truncation|31_Characters
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a cluster with hostname limit set to 31
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify that the hostname limit is respected
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles cluster with hostname truncation
+      enabled
+    preconditions: null
+    postconditions: null
+    title: RKE2_Hostname_Truncation|63_Characters
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision a cluster with hostname limit set to 63
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify that the hostname limit is respected
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RRT
+  - RM
+  suite: Go Automation/Provisioning/RKE2/CNI
+  cases:
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Calico
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Canal
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Flannel
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Cilium
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Multus_Calico
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Multus_Canal
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+  - description: Provisions a 3 node split roles node driver cluster
+    preconditions: null
+    postconditions: null
+    title: RKE2_Node_Driver|Multus_Cilium
+    severity: null
+    priority: 4
+    behavior: null
+    type: 8
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
+    automation: 2
+    status: null
+    attachments: []
+    steps:
+    - action: Create rancher provider credentials
+      expectedresult: ""
+      data: ""
+      position: 1
+      attachments: []
+      steps: []
+    - action: Provision rke2 node driver cluster
+      expectedresult: ""
+      data: ""
+      position: 2
+      attachments: []
+      steps: []
+    - action: Verify cluster state
+      expectedresult: ""
+      data: ""
+      position: 3
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "14": Validation
+      "18": Hostbusters
+    createdat: null
+    updatedat: null
+- projects:
+  - RANCHERINT
   suite: RKE2 Provisioning
   cases:
-  - title: "RKE2 Node Driver - All Roles Single Node"
-    description: "Provision an RKE2 node driver cluster with a single node holding all roles (etcd, controlplane, worker)"
+  - description: Provision an RKE2 node driver cluster with a single node holding
+      all roles (etcd, controlplane, worker)
+    preconditions: null
+    postconditions: null
+    title: RKE2 Node Driver - All Roles Single Node
+    severity: null
+    priority: null
+    behavior: null
+    type: null
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
     automation: 2
+    status: null
+    attachments: []
     steps:
-    - action: "Create standard user and initialize Rancher client"
+    - action: Create standard user and initialize Rancher client
+      expectedresult: Standard user and Rancher client are created successfully
       data: ""
-      expectedresult: "Standard user and Rancher client are created successfully"
       position: 1
-    - action: "Load cluster configuration and cloud provider settings"
-      data: "Machine pool: 1 node with etcd, controlplane, and worker roles"
-      expectedresult: "Cluster configuration loaded with all-roles machine pool"
+      attachments: []
+      steps: []
+    - action: Load cluster configuration and cloud provider settings
+      expectedresult: Cluster configuration loaded with all-roles machine pool
+      data: 'Machine pool: 1 node with etcd, controlplane, and worker roles'
       position: 2
-    - action: "Create cloud provider credentials"
+      attachments: []
+      steps: []
+    - action: Create cloud provider credentials
+      expectedresult: Cloud credentials are created successfully
       data: ""
-      expectedresult: "Cloud credentials are created successfully"
       position: 3
-    - action: "Create machine configuration for the cloud provider"
+      attachments: []
+      steps: []
+    - action: Create machine configuration for the cloud provider
+      expectedresult: Machine configuration is created successfully
       data: ""
-      expectedresult: "Machine configuration is created successfully"
       position: 4
-    - action: "Provision RKE2 node driver cluster"
+      attachments: []
+      steps: []
+    - action: Provision RKE2 node driver cluster
+      expectedresult: Cluster provisioning request is accepted
       data: ""
-      expectedresult: "Cluster provisioning request is accepted"
       position: 5
-    - action: "Verify cluster is active and ready"
+      attachments: []
+      steps: []
+    - action: Verify cluster is active and ready
+      expectedresult: Cluster reaches active state with all nodes ready
       data: ""
-      expectedresult: "Cluster reaches active state with all nodes ready"
       position: 6
-    - action: "Verify cluster deployments"
+      attachments: []
+      steps: []
+    - action: Verify cluster deployments
+      expectedresult: All cluster deployments are running and healthy
       data: ""
-      expectedresult: "All cluster deployments are running and healthy"
       position: 7
-    - action: "Verify cluster pods"
+      attachments: []
+      steps: []
+    - action: Verify cluster pods
+      expectedresult: All cluster pods are running
       data: ""
-      expectedresult: "All cluster pods are running"
       position: 8
-    - action: "Verify service account token secret"
+      attachments: []
+      steps: []
+    - action: Verify service account token secret
+      expectedresult: Service account token secret exists on the cluster
       data: ""
-      expectedresult: "Service account token secret exists on the cluster"
       position: 9
-    custom_field:
-      "15": "RKE2_Node_Driver|etcd_cp_worker"
-  - title: "RKE2 Node Driver - Shared Etcd+ControlPlane and Worker"
-    description: "Provision an RKE2 node driver cluster with two machine pools: one sharing etcd and controlplane roles, one for worker"
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "15": RKE2_Node_Driver|etcd_cp_worker
+    createdat: null
+    updatedat: null
+  - description: 'Provision an RKE2 node driver cluster with two machine pools: one
+      sharing etcd and controlplane roles, one for worker'
+    preconditions: null
+    postconditions: null
+    title: RKE2 Node Driver - Shared Etcd+ControlPlane and Worker
+    severity: null
+    priority: null
+    behavior: null
+    type: null
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
     automation: 2
+    status: null
+    attachments: []
     steps:
-    - action: "Create standard user and initialize Rancher client"
+    - action: Create standard user and initialize Rancher client
+      expectedresult: Standard user and Rancher client are created successfully
       data: ""
-      expectedresult: "Standard user and Rancher client are created successfully"
       position: 1
-    - action: "Load cluster configuration and cloud provider settings"
-      data: "Machine pools: etcd+controlplane pool and worker pool"
-      expectedresult: "Cluster configuration loaded with stacked roles machine pools"
+      attachments: []
+      steps: []
+    - action: Load cluster configuration and cloud provider settings
+      expectedresult: Cluster configuration loaded with stacked roles machine pools
+      data: 'Machine pools: etcd+controlplane pool and worker pool'
       position: 2
-    - action: "Create cloud provider credentials"
+      attachments: []
+      steps: []
+    - action: Create cloud provider credentials
+      expectedresult: Cloud credentials are created successfully
       data: ""
-      expectedresult: "Cloud credentials are created successfully"
       position: 3
-    - action: "Create machine configuration for the cloud provider"
+      attachments: []
+      steps: []
+    - action: Create machine configuration for the cloud provider
+      expectedresult: Machine configuration is created successfully
       data: ""
-      expectedresult: "Machine configuration is created successfully"
       position: 4
-    - action: "Provision RKE2 node driver cluster"
+      attachments: []
+      steps: []
+    - action: Provision RKE2 node driver cluster
+      expectedresult: Cluster provisioning request is accepted
       data: ""
-      expectedresult: "Cluster provisioning request is accepted"
       position: 5
-    - action: "Verify cluster is active and ready"
+      attachments: []
+      steps: []
+    - action: Verify cluster is active and ready
+      expectedresult: Cluster reaches active state with all nodes ready
       data: ""
-      expectedresult: "Cluster reaches active state with all nodes ready"
       position: 6
-    - action: "Verify cluster deployments"
+      attachments: []
+      steps: []
+    - action: Verify cluster deployments
+      expectedresult: All cluster deployments are running and healthy
       data: ""
-      expectedresult: "All cluster deployments are running and healthy"
       position: 7
-    - action: "Verify cluster pods"
+      attachments: []
+      steps: []
+    - action: Verify cluster pods
+      expectedresult: All cluster pods are running
       data: ""
-      expectedresult: "All cluster pods are running"
       position: 8
-    - action: "Verify service account token secret"
+      attachments: []
+      steps: []
+    - action: Verify service account token secret
+      expectedresult: Service account token secret exists on the cluster
       data: ""
-      expectedresult: "Service account token secret exists on the cluster"
       position: 9
-    custom_field:
-      "15": "RKE2_Node_Driver|etcd_cp|worker"
-  - title: "RKE2 Node Driver - Dedicated Etcd, ControlPlane, and Worker"
-    description: "Provision an RKE2 node driver cluster with three dedicated machine pools: etcd, controlplane, and worker"
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "15": RKE2_Node_Driver|etcd_cp|worker
+    createdat: null
+    updatedat: null
+  - description: 'Provision an RKE2 node driver cluster with three dedicated machine
+      pools: etcd, controlplane, and worker'
+    preconditions: null
+    postconditions: null
+    title: RKE2 Node Driver - Dedicated Etcd, ControlPlane, and Worker
+    severity: null
+    priority: null
+    behavior: null
+    type: null
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
     automation: 2
+    status: null
+    attachments: []
     steps:
-    - action: "Create standard user and initialize Rancher client"
+    - action: Create standard user and initialize Rancher client
+      expectedresult: Standard user and Rancher client are created successfully
       data: ""
-      expectedresult: "Standard user and Rancher client are created successfully"
       position: 1
-    - action: "Load cluster configuration and cloud provider settings"
-      data: "Machine pools: dedicated etcd pool, dedicated controlplane pool, dedicated worker pool"
-      expectedresult: "Cluster configuration loaded with dedicated role machine pools"
+      attachments: []
+      steps: []
+    - action: Load cluster configuration and cloud provider settings
+      expectedresult: Cluster configuration loaded with dedicated role machine pools
+      data: 'Machine pools: dedicated etcd pool, dedicated controlplane pool, dedicated
+        worker pool'
       position: 2
-    - action: "Create cloud provider credentials"
+      attachments: []
+      steps: []
+    - action: Create cloud provider credentials
+      expectedresult: Cloud credentials are created successfully
       data: ""
-      expectedresult: "Cloud credentials are created successfully"
       position: 3
-    - action: "Create machine configuration for the cloud provider"
+      attachments: []
+      steps: []
+    - action: Create machine configuration for the cloud provider
+      expectedresult: Machine configuration is created successfully
       data: ""
-      expectedresult: "Machine configuration is created successfully"
       position: 4
-    - action: "Provision RKE2 node driver cluster"
+      attachments: []
+      steps: []
+    - action: Provision RKE2 node driver cluster
+      expectedresult: Cluster provisioning request is accepted
       data: ""
-      expectedresult: "Cluster provisioning request is accepted"
       position: 5
-    - action: "Verify cluster is active and ready"
+      attachments: []
+      steps: []
+    - action: Verify cluster is active and ready
+      expectedresult: Cluster reaches active state with all nodes ready
       data: ""
-      expectedresult: "Cluster reaches active state with all nodes ready"
       position: 6
-    - action: "Verify cluster deployments"
+      attachments: []
+      steps: []
+    - action: Verify cluster deployments
+      expectedresult: All cluster deployments are running and healthy
       data: ""
-      expectedresult: "All cluster deployments are running and healthy"
       position: 7
-    - action: "Verify cluster pods"
+      attachments: []
+      steps: []
+    - action: Verify cluster pods
+      expectedresult: All cluster pods are running
       data: ""
-      expectedresult: "All cluster pods are running"
       position: 8
-    - action: "Verify service account token secret"
+      attachments: []
+      steps: []
+    - action: Verify service account token secret
+      expectedresult: Service account token secret exists on the cluster
       data: ""
-      expectedresult: "Service account token secret exists on the cluster"
       position: 9
-    custom_field:
-      "15": "RKE2_Node_Driver|etcd|cp|worker"
-  - title: "RKE2 Node Driver - Dedicated Roles with Windows Worker"
-    description: "Provision an RKE2 node driver cluster with dedicated etcd, controlplane, and worker pools plus a Windows worker pool (vSphere only)"
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "15": RKE2_Node_Driver|etcd|cp|worker
+    createdat: null
+    updatedat: null
+  - description: Provision an RKE2 node driver cluster with dedicated etcd, controlplane,
+      and worker pools plus a Windows worker pool (vSphere only)
+    preconditions: null
+    postconditions: null
+    title: RKE2 Node Driver - Dedicated Roles with Windows Worker
+    severity: null
+    priority: null
+    behavior: null
+    type: null
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
     automation: 2
+    status: null
+    attachments: []
     steps:
-    - action: "Create standard user and initialize Rancher client"
+    - action: Create standard user and initialize Rancher client
+      expectedresult: Standard user and Rancher client are created successfully
       data: ""
-      expectedresult: "Standard user and Rancher client are created successfully"
       position: 1
-    - action: "Load cluster configuration and verify vSphere provider with Windows image"
-      data: "Machine pools: dedicated etcd pool, dedicated controlplane pool, dedicated worker pool, Windows worker pool"
-      expectedresult: "Cluster configuration loaded and Windows machine image confirmed available in vSphere"
+      attachments: []
+      steps: []
+    - action: Load cluster configuration and verify vSphere provider with Windows
+        image
+      expectedresult: Cluster configuration loaded and Windows machine image confirmed
+        available in vSphere
+      data: 'Machine pools: dedicated etcd pool, dedicated controlplane pool, dedicated
+        worker pool, Windows worker pool'
       position: 2
-    - action: "Create cloud provider credentials"
+      attachments: []
+      steps: []
+    - action: Create cloud provider credentials
+      expectedresult: Cloud credentials are created successfully
       data: ""
-      expectedresult: "Cloud credentials are created successfully"
       position: 3
-    - action: "Create machine configuration for the cloud provider including Windows machine config"
+      attachments: []
+      steps: []
+    - action: Create machine configuration for the cloud provider including Windows
+        machine config
+      expectedresult: Machine configurations are created successfully
       data: ""
-      expectedresult: "Machine configurations are created successfully"
       position: 4
-    - action: "Provision RKE2 node driver cluster"
+      attachments: []
+      steps: []
+    - action: Provision RKE2 node driver cluster
+      expectedresult: Cluster provisioning request is accepted
       data: ""
-      expectedresult: "Cluster provisioning request is accepted"
       position: 5
-    - action: "Verify cluster is active and ready"
+      attachments: []
+      steps: []
+    - action: Verify cluster is active and ready
+      expectedresult: Cluster reaches active state with all Linux and Windows nodes
+        ready
       data: ""
-      expectedresult: "Cluster reaches active state with all Linux and Windows nodes ready"
       position: 6
-    - action: "Verify cluster deployments"
+      attachments: []
+      steps: []
+    - action: Verify cluster deployments
+      expectedresult: All cluster deployments are running and healthy
       data: ""
-      expectedresult: "All cluster deployments are running and healthy"
       position: 7
-    - action: "Verify cluster pods"
+      attachments: []
+      steps: []
+    - action: Verify cluster pods
+      expectedresult: All cluster pods are running
       data: ""
-      expectedresult: "All cluster pods are running"
       position: 8
-    - action: "Verify service account token secret"
+      attachments: []
+      steps: []
+    - action: Verify service account token secret
+      expectedresult: Service account token secret exists on the cluster
       data: ""
-      expectedresult: "Service account token secret exists on the cluster"
       position: 9
-    custom_field:
-      "15": "RKE2_Node_Driver|etcd|cp|worker|windows"
-  - title: "RKE2 Node Driver - High Availability (3 Etcd, 2 ControlPlane, 3 Worker)"
-    description: "Provision a highly available RKE2 node driver cluster with 3 etcd nodes, 2 controlplane nodes, and 3 worker nodes"
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "15": RKE2_Node_Driver|etcd|cp|worker|windows
+    createdat: null
+    updatedat: null
+  - description: Provision a highly available RKE2 node driver cluster with 3 etcd
+      nodes, 2 controlplane nodes, and 3 worker nodes
+    preconditions: null
+    postconditions: null
+    title: RKE2 Node Driver - High Availability (3 Etcd, 2 ControlPlane, 3 Worker)
+    severity: null
+    priority: null
+    behavior: null
+    type: null
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
     automation: 2
+    status: null
+    attachments: []
     steps:
-    - action: "Create standard user and initialize Rancher client"
+    - action: Create standard user and initialize Rancher client
+      expectedresult: Standard user and Rancher client are created successfully
       data: ""
-      expectedresult: "Standard user and Rancher client are created successfully"
       position: 1
-    - action: "Load cluster configuration and cloud provider settings"
-      data: "Machine pools: 3 etcd nodes, 2 controlplane nodes, 3 worker nodes"
-      expectedresult: "Cluster configuration loaded with HA machine pool quantities"
+      attachments: []
+      steps: []
+    - action: Load cluster configuration and cloud provider settings
+      expectedresult: Cluster configuration loaded with HA machine pool quantities
+      data: 'Machine pools: 3 etcd nodes, 2 controlplane nodes, 3 worker nodes'
       position: 2
-    - action: "Create cloud provider credentials"
+      attachments: []
+      steps: []
+    - action: Create cloud provider credentials
+      expectedresult: Cloud credentials are created successfully
       data: ""
-      expectedresult: "Cloud credentials are created successfully"
       position: 3
-    - action: "Create machine configuration for the cloud provider"
+      attachments: []
+      steps: []
+    - action: Create machine configuration for the cloud provider
+      expectedresult: Machine configuration is created successfully
       data: ""
-      expectedresult: "Machine configuration is created successfully"
       position: 4
-    - action: "Provision RKE2 HA node driver cluster"
+      attachments: []
+      steps: []
+    - action: Provision RKE2 HA node driver cluster
+      expectedresult: Cluster provisioning request is accepted
       data: ""
-      expectedresult: "Cluster provisioning request is accepted"
       position: 5
-    - action: "Verify cluster is active and ready"
+      attachments: []
+      steps: []
+    - action: Verify cluster is active and ready
+      expectedresult: Cluster reaches active state with all 8 nodes ready
       data: ""
-      expectedresult: "Cluster reaches active state with all 8 nodes ready"
       position: 6
-    - action: "Verify cluster deployments"
+      attachments: []
+      steps: []
+    - action: Verify cluster deployments
+      expectedresult: All cluster deployments are running and healthy
       data: ""
-      expectedresult: "All cluster deployments are running and healthy"
       position: 7
-    - action: "Verify cluster pods"
+      attachments: []
+      steps: []
+    - action: Verify cluster pods
+      expectedresult: All cluster pods are running
       data: ""
-      expectedresult: "All cluster pods are running"
       position: 8
-    - action: "Verify service account token secret"
+      attachments: []
+      steps: []
+    - action: Verify service account token secret
+      expectedresult: Service account token secret exists on the cluster
       data: ""
-      expectedresult: "Service account token secret exists on the cluster"
       position: 9
-    custom_field:
-      "15": "RKE2_Node_Driver|3_etcd|2_cp|3_worker"
-  - title: "RKE2 AWS Out-of-Tree Cloud Provider"
-    description: "Provision an RKE2 node driver cluster on AWS with the out-of-tree cloud provider enabled and verify cloud provider integration"
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "15": RKE2_Node_Driver|3_etcd|2_cp|3_worker
+    createdat: null
+    updatedat: null
+  - description: Provision an RKE2 node driver cluster on AWS with the out-of-tree
+      cloud provider enabled and verify cloud provider integration
+    preconditions: null
+    postconditions: null
+    title: RKE2 AWS Out-of-Tree Cloud Provider
+    severity: null
+    priority: null
+    behavior: null
+    type: null
+    layer: null
+    isflaky: null
+    suiteid: null
+    milestoneid: null
     automation: 2
+    status: null
+    attachments: []
     steps:
-    - action: "Create standard user and initialize Rancher client"
+    - action: Create standard user and initialize Rancher client
+      expectedresult: Standard user and Rancher client are created successfully
       data: ""
-      expectedresult: "Standard user and Rancher client are created successfully"
       position: 1
-    - action: "Load cluster configuration and verify AWS provider"
-      data: "Machine pools: 3 etcd nodes, 2 controlplane nodes, 2 worker nodes; CloudProvider: aws"
-      expectedresult: "Cluster configuration loaded and AWS provider confirmed"
+      attachments: []
+      steps: []
+    - action: Load cluster configuration and verify AWS provider
+      expectedresult: Cluster configuration loaded and AWS provider confirmed
+      data: 'Machine pools: 3 etcd nodes, 2 controlplane nodes, 2 worker nodes; CloudProvider:
+        aws'
       position: 2
-    - action: "Create AWS cloud provider credentials"
+      attachments: []
+      steps: []
+    - action: Create AWS cloud provider credentials
+      expectedresult: AWS cloud credentials are created successfully
       data: ""
-      expectedresult: "AWS cloud credentials are created successfully"
       position: 3
-    - action: "Create machine configuration for AWS"
+      attachments: []
+      steps: []
+    - action: Create machine configuration for AWS
+      expectedresult: AWS machine configuration is created successfully
       data: ""
-      expectedresult: "AWS machine configuration is created successfully"
       position: 4
-    - action: "Provision RKE2 cluster with AWS out-of-tree cloud provider"
+      attachments: []
+      steps: []
+    - action: Provision RKE2 cluster with AWS out-of-tree cloud provider
+      expectedresult: Cluster provisioning request is accepted
       data: ""
-      expectedresult: "Cluster provisioning request is accepted"
       position: 5
-    - action: "Verify cluster is active and ready"
+      attachments: []
+      steps: []
+    - action: Verify cluster is active and ready
+      expectedresult: Cluster reaches active state with all nodes ready
       data: ""
-      expectedresult: "Cluster reaches active state with all nodes ready"
       position: 6
-    - action: "Verify cluster deployments"
+      attachments: []
+      steps: []
+    - action: Verify cluster deployments
+      expectedresult: All cluster deployments are running and healthy
       data: ""
-      expectedresult: "All cluster deployments are running and healthy"
       position: 7
-    - action: "Verify cluster pods"
+      attachments: []
+      steps: []
+    - action: Verify cluster pods
+      expectedresult: All cluster pods are running
       data: ""
-      expectedresult: "All cluster pods are running"
       position: 8
-    - action: "Verify service account token secret"
+      attachments: []
+      steps: []
+    - action: Verify service account token secret
+      expectedresult: Service account token secret exists on the cluster
       data: ""
-      expectedresult: "Service account token secret exists on the cluster"
       position: 9
-    - action: "Verify AWS cloud provider integration"
+      attachments: []
+      steps: []
+    - action: Verify AWS cloud provider integration
+      expectedresult: AWS cloud provider is functional and correctly integrated with
+        the cluster
       data: ""
-      expectedresult: "AWS cloud provider is functional and correctly integrated with the cluster"
       position: 10
-    custom_field:
-      "15": "AWS_OutOfTree"
+      attachments: []
+      steps: []
+    tags: []
+    params: {}
+    parameters: []
+    customfield:
+      "15": AWS_OutOfTree
+    createdat: null
+    updatedat: null
