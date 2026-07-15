@@ -170,9 +170,13 @@ func VerifyUserCanDeleteNamespace(t *testing.T, client, standardClient *rancher.
 
 	err = extnamespaceapi.DeleteNamespace(standardClient, clusterID, adminNamespace.Name, false)
 	switch role {
-	case ClusterOwner, ProjectOwner, ProjectMember:
+	case ClusterOwner, ProjectOwner:
 		require.NoError(t, err)
 		err = extnamespaceapi.WaitForNamespaceDeletion(standardClient, clusterID, adminNamespace.Name)
+		assert.NoError(t, err)
+	case ProjectMember:
+		require.NoError(t, err)
+		err = extnamespaceapi.WaitForNamespaceDeletion(client, clusterID, adminNamespace.Name)
 		assert.NoError(t, err)
 	case ClusterMember:
 		require.Error(t, err)
