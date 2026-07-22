@@ -45,7 +45,8 @@ func createUserWithBuiltinRole(client *rancher.Client, builtinGlobalRole rbac.Ro
 }
 
 func createCustomGlobalRoleAndUser(client *rancher.Client, globalRole *v3.GlobalRole) (*v3.GlobalRole, *management.User, error) {
-	createdGlobalRole, err := extrbacapi.CreateGlobalRole(client, globalRole)
+	customGlobalRole := globalRole.DeepCopy()
+	createdGlobalRole, err := extrbacapi.CreateGlobalRole(client, customGlobalRole)
 	if err != nil {
 		return nil, nil, err
 	}

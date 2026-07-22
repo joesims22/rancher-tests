@@ -7,8 +7,11 @@ import (
 
 	"github.com/rancher/shepherd/clients/rancher"
 	management "github.com/rancher/shepherd/clients/rancher/generated/management/v3"
+	v3 "github.com/rancher/rancher/pkg/apis/management.cattle.io/v3"
 	extensionscluster "github.com/rancher/shepherd/extensions/clusters"
 	password "github.com/rancher/shepherd/extensions/users/passwordgenerator"
+	//extusers "github.com/rancher/shepherd/extensions/users"
+	extrbac "github.com/rancher/shepherd/extensions/kubeapi/rbac"
 	"github.com/rancher/shepherd/pkg/session"
 	"github.com/rancher/tests/actions/rbac"
 	"github.com/rancher/tests/actions/users"
@@ -22,10 +25,7 @@ type StandardUserManageUsersTestSuite struct {
 	client  *rancher.Client
 	session *session.Session
 	cluster *management.Cluster
-}
-
-func (su *StandardUserManageUsersTestSuite) TearDownSuite() {
-	su.session.Cleanup()
+	sharedManageUsersGlobalRole *v3.GlobalRole
 }
 
 func (su *StandardUserManageUsersTestSuite) SetupSuite() {
@@ -42,6 +42,15 @@ func (su *StandardUserManageUsersTestSuite) SetupSuite() {
 	require.NoError(su.T(), err, "Error getting cluster ID")
 	su.cluster, err = su.client.Management.Cluster.ByID(clusterID)
 	require.NoError(su.T(), err)
+
+	createdCustomGlobalRole, err := extrbac.CreateGlobalRole(su.client, &customGlobalRoleManageUsers)
+	require.NoError(su.T(), err)
+	su.sharedManageUsersGlobalRole = createdCustomGlobalRole
+	su.sharedManageUsersGlobalRole = createdCustomGlobalRole
+}
+
+func (su *StandardUserManageUsersTestSuite) TearDownSuite() {
+	su.session.Cleanup()
 }
 
 func (su *StandardUserManageUsersTestSuite) TestStandardUserWithoutManageUsersDelete() {
@@ -131,7 +140,8 @@ func (su *StandardUserManageUsersTestSuite) TestStandardUserWithManageUsersEdit(
 	defer subSession.Cleanup()
 
 	log.Info("Creating a standard user with manage-users verb on users resource")
-	_, standardUser, err := createCustomGlobalRoleAndUser(su.client, &customGlobalRoleManageUsers)
+
+	_, standardUser, err := createCustomGlobalRoleAndUser(su.client, su.sharedManageUsersGlobalRole)
 	require.NoError(su.T(), err, "failed to create global role and user")
 
 	standardUserClient, err := su.client.AsUser(standardUser)
