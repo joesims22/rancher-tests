@@ -208,5 +208,89 @@
     "workflow": "rancher-upgrade-cluster-provisioning-test",
     "job": "v2-16",
     "timestamp": "2026-08-13T09:08:00Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "capi-pnp-cluster-provisioning",
+    "job": "v2-15",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "capi-pnp-cluster-provisioning",
+    "job": "v2-16",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "cluster-provisioning",
+    "job": "v2-14",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "cluster-provisioning",
+    "job": "v2-15",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "cluster-provisioning",
+    "job": "v2-16",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "day2-ops-dualstack-rancher",
+    "job": "v2-15",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "day2-ops-dualstack-rancher",
+    "job": "v2-16",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "day2-ops-ipv6-rancher",
+    "job": "v2-15",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "day2-ops-ipv6-rancher",
+    "job": "v2-16",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "rancher-upgrade-proxy-cluster-provisioning",
+    "job": "v2-14",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "rancher-upgrade-proxy-cluster-provisioning",
+    "job": "v2-15",
+    "timestamp": "2026-08-14T12:34:57Z"
+  },
+  {
+    "date": "",
+    "status": "failure",
+    "workflow": "rancher-upgrade-proxy-cluster-provisioning",
+    "job": "v2-16",
+    "timestamp": "2026-08-14T12:34:57Z"
   }
 ]
