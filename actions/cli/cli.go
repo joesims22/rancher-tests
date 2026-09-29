@@ -1,88 +1,130 @@
 package cli
 
 import (
-	ranchercli "github.com/rancher/shepherd/clients/ranchercli"
+	"bytes"
+	"context"
+	"errors"
+	"fmt"
+	"os"
+	"os/exec"
+	"sort"
+	"strings"
 )
 
 const (
-	context    = "context"
-	login      = "login"
-	namespaces = "namespaces"
-	projects   = "projects"
-	rancher    = "rancher"
+	configDirectoryEnvironment = "RANCHER_CLI_CONFIG_DIR"
+	credentialStoreEnvironment = "RANCHER_CLI_CREDENTIAL_STORE"
+	fileCredentialStore        = "file"
+	rancherBinary              = "rancher"
 )
 
-// Login will log into the Rancher server using the provided URL and token.
-func Login(client *ranchercli.Client, url, token string) error {
-	err := client.ExecuteCommand(rancher, login, url, "--token", token)
-	if err != nil {
-		return err
-	}
-
-	return nil
+// Result contains the output and exit status from a Rancher CLI command.
+type Result struct {
+	Stdout   string
+	Stderr   string
+	ExitCode int
 }
 
-// SwitchContext will display the current context and switch to the default one.
-func SwitchContext(client *ranchercli.Client, project string) error {
-	err := client.ExecuteCommand(rancher, context, "switch", project)
-	if err != nil {
-		return err
-	}
-
-	return nil
+// RunOptions contains per-command input and environment variables.
+type RunOptions struct {
+	Stdin       string
+	Environment map[string]string
 }
 
-// CreateProjects will create and projects in the specified cluster.
-func CreateProjects(client *ranchercli.Client, projectName, cluster string) error {
-	err := client.ExecuteCommand(rancher, projects, "create", "--cluster", cluster, projectName)
-	if err != nil {
-		return err
-	}
-
-	err = client.Exists(rancher, projects, projectName)
-	if err != nil {
-		return err
-	}
-
-	return nil
+// ExitError reports a non-zero Rancher CLI exit code without exposing command arguments.
+type ExitError struct {
+	ExitCode int
 }
 
-// DeleteProjects will delete projects in the specified cluster.
-func DeleteProjects(client *ranchercli.Client, projectName string) error {
-	err := client.Delete(projects, projectName)
-	if err != nil {
-		return err
-	}
-
-	err = client.ExecuteCommand(rancher, projects, "ls", "|", "grep", projectName)
-	if err != nil {
-		return err
-	}
-
-	return nil
+func (e *ExitError) Error() string {
+	return fmt.Sprintf("rancher command exited with code %d", e.ExitCode)
 }
 
-// CreateNamespaces will create namespaces in the specified cluster.
-func CreateNamespaces(client *ranchercli.Client, cluster, namespaceName string) error {
-	err := client.ExecuteCommand(rancher, namespaces, "create", namespaceName)
-	if err != nil {
-		return err
-	}
-
-	err = client.Exists(rancher, namespaces, namespaceName)
-	if err != nil {
-		return err
-	}
-
-	return nil
+// Runner executes an installed Rancher CLI with isolated configuration and credentials.
+type Runner struct {
+	binaryPath      string
+	configDirectory string
 }
 
-// DeleteNamespaces will delete namespaces in the specified cluster.
-func DeleteNamespaces(client *ranchercli.Client, namespaceName string) error {
-	err := client.Delete(namespaces, namespaceName)
+// NewRunner resolves the installed Rancher CLI and returns an isolated command runner.
+func NewRunner(configDirectory string) (*Runner, error) {
+	binaryPath, err := exec.LookPath(rancherBinary)
 	if err != nil {
-		return err
+		return nil, fmt.Errorf("Rancher CLI binary %q was not found in PATH: %w", rancherBinary, err)
 	}
 
-	return nil
+	return newRunner(binaryPath, configDirectory)
+}
+
+func newRunner(binaryPath, configDirectory string) (*Runner, error) {
+	if strings.TrimSpace(binaryPath) == "" {
+		return nil, errors.New("Rancher CLI binary path is required")
+	}
+	if strings.TrimSpace(configDirectory) == "" {
+		return nil, errors.New("Rancher CLI config directory is required")
+	}
+
+	return &Runner{
+		binaryPath:      binaryPath,
+		configDirectory: configDirectory,
+	}, nil
+}
+
+// Run executes a Rancher CLI command and captures stdout, stderr, and its exit code.
+func (r *Runner) Run(ctx context.Context, options RunOptions, args ...string) (Result, error) {
+	command := exec.CommandContext(ctx, r.binaryPath, args...)
+	command.Stdin = strings.NewReader(options.Stdin)
+	command.Env = commandEnvironment(options.Environment, r.configDirectory)
+
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+	command.Stdout = &stdout
+	command.Stderr = &stderr
+
+	err := command.Run()
+	result := Result{
+		Stdout:   stdout.String(),
+		Stderr:   stderr.String(),
+		ExitCode: 0,
+	}
+	if err == nil {
+		return result, nil
+	}
+
+	var exitError *exec.ExitError
+	if errors.As(err, &exitError) {
+		result.ExitCode = exitError.ExitCode()
+		return result, &ExitError{ExitCode: result.ExitCode}
+	}
+
+	return result, fmt.Errorf("failed to execute Rancher CLI: %w", err)
+}
+
+func commandEnvironment(overrides map[string]string, configDirectory string) []string {
+	environment := make(map[string]string, len(os.Environ())+len(overrides)+2)
+	for _, variable := range os.Environ() {
+		key, value, found := strings.Cut(variable, "=")
+		if found {
+			environment[key] = value
+		}
+	}
+	for key, value := range overrides {
+		environment[key] = value
+	}
+
+	environment[configDirectoryEnvironment] = configDirectory
+	environment[credentialStoreEnvironment] = fileCredentialStore
+
+	keys := make([]string, 0, len(environment))
+	for key := range environment {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	variables := make([]string, 0, len(keys))
+	for _, key := range keys {
+		variables = append(variables, key+"="+environment[key])
+	}
+
+	return variables
 }
