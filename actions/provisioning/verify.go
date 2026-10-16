@@ -71,15 +71,15 @@ func VerifyClusterReady(client *rancher.Client, cluster *steveV1.SteveAPIObject)
 	defer cancel()
 
 	err := kwait.PollUntilContextTimeout(ctx, 10*time.Second, defaults.ThirtyMinuteTimeout, false, func(context.Context) (done bool, err error) {
-		client, err = client.ReLogin()
-		if err != nil {
-			logrus.Debugf("Unable to fetch cluster client (%s), retrying", clusterName)
-			return false, nil
-		}
-
 		latestCluster, err := client.Steve.SteveType(stevetypes.Provisioning).ByID(clusterID)
 		if err != nil {
 			lastErr = err
+			// Re-login only on failure; a new client on every poll can hang and leak connections.
+			if newClient, reloginErr := client.ReLogin(); reloginErr == nil {
+				client = newClient
+			} else {
+				logrus.Debugf("Unable to fetch cluster client (%s), retrying", clusterName)
+			}
 			return false, nil
 		}
 
