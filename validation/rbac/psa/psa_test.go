@@ -14,6 +14,7 @@ import (
 	"github.com/rancher/shepherd/extensions/users"
 	namegen "github.com/rancher/shepherd/pkg/namegenerator"
 	"github.com/rancher/shepherd/pkg/session"
+	rbacapi "github.com/rancher/tests/actions/kubeapi/rbac"
 	"github.com/rancher/tests/actions/namespaces"
 	psadeploy "github.com/rancher/tests/actions/psact"
 	rbac "github.com/rancher/tests/actions/rbac"
@@ -21,6 +22,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 const (
@@ -316,10 +318,13 @@ func (rb *PSATestSuite) TestPSA() {
 
 			log.Info("Adding user as " + role + " to the downstream cluster.")
 			if strings.Contains(role, "project") || role == rbac.ReadOnly.String() || role == rbac.CreateNS.String() {
-				err := users.AddProjectMember(rb.client, rb.adminProject, rb.nonAdminUser, role, nil)
+				projectID := strings.Split(rb.adminProject.ID, ":")
+				v3Project, err := rb.client.WranglerContext.Mgmt.Project().Get(projectID[0], projectID[1], metav1.GetOptions{})
+				require.NoError(rb.T(), err)
+				_, err = rbacapi.CreateProjectRoleTemplateBinding(rb.client, rb.nonAdminUser.ID, v3Project, role)
 				require.NoError(rb.T(), err)
 			} else {
-				err := users.AddClusterRoleToUser(rb.client, rb.cluster, rb.nonAdminUser, role, nil)
+				_, err := rbacapi.CreateClusterRoleTemplateBinding(rb.client, rb.cluster.ID, rb.nonAdminUser.ID, role)
 				require.NoError(rb.T(), err)
 			}
 			rb.nonAdminUserClient, err = rb.nonAdminUserClient.ReLogin()
@@ -343,7 +348,7 @@ func (rb *PSATestSuite) TestPSA() {
 
 		if strings.Contains(role, "project") || role == rbac.CreateNS.String() {
 			rb.Run("Additional testcase - Validate if "+role+" with an additional role update-psa can add/edit/delete labels from admin created namespace", func() {
-				err := users.AddClusterRoleToUser(rb.client, rb.cluster, rb.nonAdminUser, rb.psaRole.ID, nil)
+				_, err := rbacapi.CreateClusterRoleTemplateBinding(rb.client, rb.cluster.ID, rb.nonAdminUser.ID, rb.psaRole.ID)
 				require.NoError(rb.T(), err)
 				rb.ValidatePSA(psaRole, customRole)
 			})
@@ -382,10 +387,13 @@ func (rb *PSATestSuite) TestPsactRBAC() {
 		rb.Run("Adding user as "+tt.name+" to the downstream cluster.", func() {
 			if tt.member == rbac.StandardUser.String() {
 				if strings.Contains(tt.role, "project") || tt.role == rbac.ReadOnly.String() {
-					err := users.AddProjectMember(rb.client, rb.adminProject, rb.nonAdminUser, tt.role, nil)
+					projectID := strings.Split(rb.adminProject.ID, ":")
+					v3Project, err := rb.client.WranglerContext.Mgmt.Project().Get(projectID[0], projectID[1], metav1.GetOptions{})
+					require.NoError(rb.T(), err)
+					_, err = rbacapi.CreateProjectRoleTemplateBinding(rb.client, rb.nonAdminUser.ID, v3Project, tt.role)
 					require.NoError(rb.T(), err)
 				} else {
-					err := users.AddClusterRoleToUser(rb.client, rb.cluster, rb.nonAdminUser, tt.role, nil)
+					_, err := rbacapi.CreateClusterRoleTemplateBinding(rb.client, rb.cluster.ID, rb.nonAdminUser.ID, tt.role)
 					require.NoError(rb.T(), err)
 				}
 			}
