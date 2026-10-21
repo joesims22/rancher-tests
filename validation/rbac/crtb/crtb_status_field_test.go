@@ -24,6 +24,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 	rbacv1 "k8s.io/api/rbac/v1"
+	"k8s.io/apimachinery/pkg/api/meta"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/wait"
 )
@@ -186,8 +187,13 @@ func (crtbs *CRTBStatusFieldTestSuite) TestCRTBStatusFieldUpdateAndVerify() {
 
 		updatedUserCRTB := updatedCRTBList.DeepCopy()
 		if updatedUserCRTB.Status.Summary == "Error" {
-			require.Equal(crtbs.T(), falseConditionStatus, updatedUserCRTB.Status.LocalConditions[2].Status)
-			require.Equal(crtbs.T(), falseConditionStatus, updatedUserCRTB.Status.RemoteConditions[1].Status)
+			bindingCondition := meta.FindStatusCondition(updatedUserCRTB.Status.LocalConditions, bindingExists)
+			rolesCondition := meta.FindStatusCondition(updatedUserCRTB.Status.RemoteConditions, clusterRolesExist)
+			if bindingCondition == nil || rolesCondition == nil {
+				return false, nil
+			}
+			require.Equal(crtbs.T(), falseConditionStatus, bindingCondition.Status)
+			require.Equal(crtbs.T(), falseConditionStatus, rolesCondition.Status)
 			return true, nil
 		}
 		return false, nil
