@@ -192,7 +192,7 @@ func CreateProvisioningCluster(client *rancher.Client, provider Provider, creden
 	err = kwait.PollUntilContextTimeout(context.TODO(), 10*time.Second, 5*time.Minute, true, func(ctx context.Context) (bool, error) {
 		_, err = shepherdclusters.CreateK3SRKE2Cluster(provisioningClient, cluster)
 		if err != nil {
-			if strings.Contains(err.Error(), "401") {
+			if isRetryableClusterCreateError(err) {
 				return false, nil
 			}
 
@@ -260,6 +260,12 @@ func deleteRegistrySecret(client *rancher.Client, secretID string) error {
 	}
 
 	return steveClient.SteveType(secrets.SecretSteveType).Delete(registrySecret)
+}
+
+// isRetryableClusterCreateError reports whether a cluster create failed on an expired token or a transient webhook call failure.
+func isRetryableClusterCreateError(err error) bool {
+	msg := err.Error()
+	return strings.Contains(msg, "401") || strings.Contains(msg, "failed calling webhook")
 }
 
 // CreateProvisioningCustomCluster provisions a non-rke1 cluster using a 3rd party client for its nodes, then runs verify checks
@@ -339,7 +345,7 @@ func CreateProvisioningCustomCluster(client *rancher.Client, externalNodeProvide
 	err = kwait.PollUntilContextTimeout(context.TODO(), 10*time.Second, 5*time.Minute, true, func(ctx context.Context) (bool, error) {
 		clusterResp, err = shepherdclusters.CreateK3SRKE2Cluster(provisioningClient, cluster)
 		if err != nil {
-			if strings.Contains(err.Error(), "401") {
+			if isRetryableClusterCreateError(err) {
 				return false, nil
 			}
 
