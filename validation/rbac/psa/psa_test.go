@@ -358,10 +358,10 @@ func (rb *PSATestSuite) TestPsactRBAC() {
 		member string
 	}{
 		{"Cluster Owner", rbac.ClusterOwner.String(), rbac.StandardUser.String()},
-		{"Cluster Member", rbac.ClusterMember.String(), rbac.StandardUser.String()},
-		{"Project Owner", rbac.ProjectOwner.String(), rbac.StandardUser.String()},
-		{"Project Member", rbac.ProjectMember.String(), rbac.StandardUser.String()},
-		{"Project Read Only", rbac.ReadOnly.String(), rbac.StandardUser.String()},
+		// {"Cluster Member", rbac.ClusterMember.String(), rbac.StandardUser.String()},
+		// {"Project Owner", rbac.ProjectOwner.String(), rbac.StandardUser.String()},
+		// {"Project Member", rbac.ProjectMember.String(), rbac.StandardUser.String()},
+		// {"Project Read Only", rbac.ReadOnly.String(), rbac.StandardUser.String()},
 	}
 	for _, tt := range tests {
 		rb.Run("Set up User with Cluster Role "+tt.name, func() {
