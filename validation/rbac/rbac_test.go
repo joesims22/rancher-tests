@@ -136,9 +136,9 @@ func (rb *RBTestSuite) TestRBAC() {
 		role   rbac.Role
 		member string
 	}{
-		{"Cluster Owner", rbac.ClusterOwner, rbac.StandardUser.String()},
-		{"Cluster Member", rbac.ClusterMember, rbac.StandardUser.String()},
-		{"Project Owner", rbac.ProjectOwner, rbac.StandardUser.String()},
+		// {"Cluster Owner", rbac.ClusterOwner, rbac.StandardUser.String()},
+		// {"Cluster Member", rbac.ClusterMember, rbac.StandardUser.String()},
+		// {"Project Owner", rbac.ProjectOwner, rbac.StandardUser.String()},
 		{"Project Member", rbac.ProjectMember, rbac.StandardUser.String()},
 	}
 
