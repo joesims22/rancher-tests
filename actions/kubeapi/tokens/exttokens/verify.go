@@ -1,12 +1,16 @@
 package exttokens
 
 import (
+	"context"
 	"fmt"
 
 	extapi "github.com/rancher/rancher/pkg/apis/ext.cattle.io/v1"
 	"github.com/rancher/shepherd/clients/rancher"
+	"github.com/rancher/shepherd/extensions/defaults"
 	exttokenapi "github.com/rancher/shepherd/extensions/kubeapi/tokens"
 	k8serrors "k8s.io/apimachinery/pkg/api/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/watch"
 )
 
 // VerifyExtTokenData validates ext token data against expected values
@@ -111,4 +115,68 @@ func VerifySessionTokenCreateRejected(client *rancher.Client) error {
 	}
 
 	return nil
+}
+
+// VerifyStatusHashEmptyInToken returns an error if the token's status.hash is populated
+func VerifyStatusHashEmptyInToken(token *extapi.Token, operation string) error {
+	if token == nil {
+		return fmt.Errorf("%s returned a nil token", operation)
+	}
+	if token.Status.Hash != "" {
+		return fmt.Errorf("%s should not expose status.hash, got: '%s'", operation, token.Status.Hash)
+	}
+	return nil
+}
+
+// VerifyStatusHashEmptyInList returns an error if any listed token's status.hash is populated
+func VerifyStatusHashEmptyInList(tokens []extapi.Token, operation string) error {
+	for _, listedToken := range tokens {
+		if listedToken.Status.Hash != "" {
+			return fmt.Errorf("%s should not expose status.hash for token %s, got: '%s'", operation, listedToken.Name, listedToken.Status.Hash)
+		}
+	}
+	return nil
+}
+
+// VerifyWatchEventHasRedactedHash watches the named token until its event arrives and returns an error if status.hash is populated
+func VerifyWatchEventHasRedactedHash(client *rancher.Client, tokenName, operation string) error {
+	ctx, cancel := context.WithTimeout(context.Background(), defaults.OneMinuteTimeout)
+	defer cancel()
+	sendInitial := true
+	watcher, err := client.WranglerContext.Ext.Token().Watch(metav1.ListOptions{
+		FieldSelector:        "metadata.name=" + tokenName,
+		SendInitialEvents:    &sendInitial,
+		AllowWatchBookmarks:  true,
+		ResourceVersionMatch: metav1.ResourceVersionMatchNotOlderThan,
+	})
+	if err != nil {
+		return fmt.Errorf("%s failed to start watch: %w", operation, err)
+	}
+	defer watcher.Stop()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return fmt.Errorf("%s did not observe a token event before timeout", operation)
+		case event, ok := <-watcher.ResultChan():
+			if !ok {
+				return fmt.Errorf("%s watch channel closed unexpectedly", operation)
+			}
+			if event.Type == watch.Bookmark {
+				continue
+			}
+
+			watchedToken, ok := event.Object.(*extapi.Token)
+			if !ok {
+				return fmt.Errorf("%s expected ext token object from watch event", operation)
+			}
+			if watchedToken.Name != tokenName {
+				continue
+			}
+			if watchedToken.Status.Hash != "" {
+				return fmt.Errorf("%s should not expose status.hash, got: '%s'", operation, watchedToken.Status.Hash)
+			}
+			return nil
+		}
+	}
 }

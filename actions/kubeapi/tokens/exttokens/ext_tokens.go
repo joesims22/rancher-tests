@@ -86,6 +86,16 @@ func CreateExtTokenDryRun(client *rancher.Client, extToken *extapi.Token) (*exta
     return dryRunExtToken, nil
 }
 
+// DeleteCollectionExtTokens deletes every ext token the client can see, using the shared controller client the same way CreateExtTokenDryRun does
+func DeleteCollectionExtTokens(client *rancher.Client) error {
+	sharedCtrl, err := client.WranglerContext.ControllerFactory.ForObject(&extapi.Token{})
+	if err != nil {
+		return fmt.Errorf("failed to get shared controller for ext token: %w", err)
+	}
+
+	return sharedCtrl.Client().DeleteCollection(context.TODO(), "", metav1.DeleteOptions{}, metav1.ListOptions{})
+}
+
 // WaitForExtTokenStatusExpired polls until an ext token with the given name has an expired status or the timeout is reached
 func WaitForExtTokenStatusExpired(client *rancher.Client, name string, expiredStatus bool) (*extapi.Token, error) {
 	var expiredToken *extapi.Token
